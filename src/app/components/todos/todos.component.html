@@ -1,0 +1,24 @@
+<div class="todos-container">
+
+  <app-add-todo></app-add-todo>
+
+  <div  cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="todo-box" *ngFor="let todo of todos" cdkDrag >
+      <div><p>{{ todo.todo }}</p></div>
+      <div>
+        <button mat-button color="primary" (click)="todoCompleted(todo)" >Completar</button>
+        <mat-checkbox  disabled [checked]="todo.completed"></mat-checkbox>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="todo-box" *ngFor="let todo of todos"  >
+    <p>{{ todo.id }}</p>
+    <p>{{ todo.todo }}</p>
+    <p>{{ todo.completed }}</p>
+  </div>
+
+
+</div>

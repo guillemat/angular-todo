@@ -1,0 +1,10 @@
+.add-todo-wrapper {
+  margin: 10px;
+  padding: 10px;
+  align-items: center;
+  justify-items: center;
+}
+.todo-input {
+  margin: 5px;
+  padding-right: 5px;
+}
