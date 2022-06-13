@@ -1,23 +1,21 @@
 <div class="todos-container">
 
-  <app-add-todo></app-add-todo>
+  <app-add-todo (nuevoTodoEvent)="newTodo($event)" ></app-add-todo>
+
+  <app-filters (filterSelected)="filterChange($event)" ></app-filters>
 
   <div  cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="todo-box" *ngFor="let todo of todos" cdkDrag >
+    <div class="todo-box" *ngFor="let todo of todosFiltered()" cdkDrag >
       <div><p>{{ todo.todo }}</p></div>
       <div>
+
         <button mat-button color="primary" (click)="todoCompleted(todo)" >Completar</button>
+        <button mat-button color="danger" (click)="deleteTodo(todo)" >Eliminar</button>
         <mat-checkbox  disabled [checked]="todo.completed"></mat-checkbox>
       </div>
 
     </div>
 
-  </div>
-
-  <div class="todo-box" *ngFor="let todo of todos"  >
-    <p>{{ todo.id }}</p>
-    <p>{{ todo.todo }}</p>
-    <p>{{ todo.completed }}</p>
   </div>
 
 

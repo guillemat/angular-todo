@@ -18,17 +18,29 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { FormsModule } from '@angular/forms';
+import { FiltersComponent } from './components/filters/filters.component';
+import { UsersComponent } from './components/users/users.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', component: TodosComponent },
+  { path: 'users', component: UsersComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
     NavComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    FiltersComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     DragDropModule,
     MatButtonModule,
@@ -41,6 +53,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

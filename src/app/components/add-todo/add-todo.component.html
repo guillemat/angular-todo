@@ -3,9 +3,14 @@
 <div class="add-todo-wrapper" >
   <mat-form-field appearance="fill" class="todo-input" >
     <mat-label>Agregar Tarea</mat-label>
-    <input  matInput placeholder="Tarea">
+    <input  matInput placeholder="Tarea" [(ngModel)]="tarea" (keyup.enter)="addNewTodo()" >
   </mat-form-field>
 
-  <button mat-raised-button color="primary" class="todo-button" >Agregar</button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="todo-button"
+    (click)="addNewTodo()"
+  >Agregar</button>
 
 <div>

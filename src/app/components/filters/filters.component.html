@@ -1,0 +1,12 @@
+<div class="filters-container" >
+
+
+    <button
+    mat-raised-button
+    color="accent"
+    *ngFor="let filter of status"
+    class="button-filter"
+    (click)="selectFilter(filter)"
+    >{{ filter }}</button>
+
+</div>
