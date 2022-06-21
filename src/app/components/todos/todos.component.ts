@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Todo } from 'src/app/interfaces/interfaces';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { TodosService } from 'src/app/services/todos.service';
 
 
 @Component({
@@ -42,17 +43,28 @@ export class TodosComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private todoService: TodosService,
   ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.name = params['name'];
     })
+    const stringTodos = this.todoService.getTodos();
+    var todoReceived = stringTodos ? JSON.parse(stringTodos) : []
+    if( todoReceived.length > 1){
+      this.todos = todoReceived;
+    }
+  }
+
+  setInLocal(){
+    this.todoService.setTodo(this.todos);
   }
 
   deleteTodo(todo: Todo): void{
     let index = this.todos.indexOf(todo);
     this.todos.splice(index,1);
+    this.setInLocal();
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -77,12 +89,14 @@ export class TodosComponent implements OnInit {
 
     let id: number = this.maxIdCalc();
     this.todos.push({ id: id, todo: $event, completed: false});
+    this.setInLocal();
   }
 
   todoCompleted(todo: Todo): void{
     this.todos.map( (element) => {
       if(todo.id === element.id) element.completed = !element.completed
     })
+    this.setInLocal();
   }
 
   todosFiltered(): Todo[] {
@@ -94,7 +108,6 @@ export class TodosComponent implements OnInit {
       return this.todos;
     }
   }
-
 
 
 }

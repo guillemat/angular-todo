@@ -18,6 +18,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +27,7 @@ import { UsersComponent } from './components/users/users.component';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersService } from './services/users.service';
 import { UsersTasksComponent } from './components/users-tasks/users-tasks.component';
+import { TodosService } from './services/todos.service';
 
 const routes: Routes = [
   { path: '', component: TodosComponent },
@@ -59,12 +61,14 @@ const routes: Routes = [
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     MatTableModule,
     FormsModule,
   ],
   providers: [
     UsersService,
+    TodosService
   ],
   bootstrap: [AppComponent]
 })

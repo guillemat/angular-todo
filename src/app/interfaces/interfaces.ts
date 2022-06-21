@@ -2,7 +2,7 @@ export interface Todo {
   id: number;
   todo: string;
   completed: boolean;
-  completedForId?: number;
+  completedFor?: string;
 }
 
 export interface IUser {

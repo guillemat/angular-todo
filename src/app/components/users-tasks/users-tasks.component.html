@@ -1,1 +1,16 @@
-<p>users-tasks works!</p>
+<div class="todo-box" *ngFor="let todo of todos"  id={{todo.id}} >
+  <div><p>{{ todo.todo }} </p></div>
+  <div>
+    <mat-label>Realizada por</mat-label>
+    <mat-select name="userSelected" #userSelected (selectionChange)="selectUserElement($event, todo.id)" >
+      <mat-option *ngFor="let usuario of usersNames(), " [value]="usuario" >
+        {{ usuario }}
+      </mat-option>
+    </mat-select>
+  </div>
+  <div>
+
+    <button mat-button color="primary" (click)="userCompleted(todo)"  >Completar</button>
+  </div>
+
+</div>
